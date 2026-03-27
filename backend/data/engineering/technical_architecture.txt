@@ -1,0 +1,47 @@
+FOODCHOW - TECHNICAL ARCHITECTURE DOCUMENT
+
+SYSTEM OVERVIEW
+FoodChow platform is built on a microservices architecture deployed on AWS.
+The system handles 2.4 million API requests per day with 99.97% uptime SLA.
+
+CORE SERVICES
+1. Authentication Service
+   - Technology: Node.js, JWT, Redis for session management
+   - Handles: 45,000 login requests per day
+   - Infrastructure: 3 instances behind AWS ALB
+
+2. Payment Processing Service
+   - Technology: Python, FastAPI, Stripe integration
+   - Handles: 12,000 transactions per day
+   - Infrastructure: Isolated VPC, PCI-DSS compliant
+
+3. Analytics Service
+   - Technology: Python, Apache Kafka, Apache Spark
+   - Handles: Real-time data processing for all transactions
+   - Infrastructure: EMR cluster, auto-scaling enabled
+
+4. Notification Service
+   - Technology: Node.js, AWS SES, Firebase Cloud Messaging
+   - Handles: 180,000 emails and 95,000 push notifications per day
+
+DATABASE ARCHITECTURE
+Primary Database: PostgreSQL 15 (AWS RDS Multi-AZ)
+Cache Layer: Redis 7.0 (AWS ElastiCache)
+Message Queue: Apache Kafka (MSK)
+Search Engine: Elasticsearch 8.0
+Data Warehouse: AWS Redshift
+
+CI/CD PIPELINE
+Version Control: GitHub (mono-repo structure)
+CI Tool: GitHub Actions
+CD Tool: ArgoCD (GitOps)
+Container Registry: AWS ECR
+Orchestration: Kubernetes (EKS)
+Deployment Strategy: Blue-Green deployments
+
+CODING STANDARDS
+Language: TypeScript (frontend), Python (backend services)
+Code Review: Minimum 2 approvals required
+Test Coverage: Minimum 80% required for merge
+Linting: ESLint (frontend), Ruff (Python backend)
+Documentation: All public APIs must have OpenAPI specs

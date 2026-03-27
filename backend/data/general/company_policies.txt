@@ -1,0 +1,36 @@
+FOODCHOW - COMPANY POLICIES AND EMPLOYEE HANDBOOK
+
+LEAVE POLICY
+Annual Leave: 20 days per year (accrued monthly)
+Sick Leave: 12 days per year
+Casual Leave: 6 days per year
+Maternity Leave: 26 weeks fully paid
+Paternity Leave: 4 weeks fully paid
+Bereavement Leave: 5 days
+Leave carry-forward: Maximum 10 days to next year
+
+WORK FROM HOME POLICY
+Employees may work from home up to 3 days per week
+Core hours (mandatory online): 10 AM - 4 PM local time
+WFH requests must be submitted by Thursday for the following week
+Employees must have stable internet (minimum 20 Mbps)
+Video must be on during team meetings
+
+WORKING HOURS
+Standard Hours: 9 AM - 6 PM (Monday to Friday)
+Flexible Start: Between 8 AM - 10 AM (with manager approval)
+Overtime: Compensated at 1.5x rate for hours beyond 45/week
+Weekend work requires prior written manager approval
+
+REIMBURSEMENT POLICY
+Internet allowance: $50/month for WFH employees
+Home office setup: One-time $500 reimbursement
+Professional development: Up to $1,500/year per employee
+Travel: Economy class for flights under 6 hours
+Meals during travel: Up to $75/day
+Submit reimbursements within 30 days of expense
+
+IT SUPPORT
+Submit IT tickets at: helpdesk@foodchow.com
+Response time SLA: 4 hours for critical, 24 hours for standard
+Emergency IT support: ext. 911 or it-emergency@foodchow.com

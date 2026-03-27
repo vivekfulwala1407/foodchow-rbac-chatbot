@@ -1,0 +1,43 @@
+FOODCHOW - CUSTOMER FEEDBACK ANALYSIS 2025
+
+OVERALL METRICS
+Total Feedback Responses: 4,850
+Average Rating: 4.3 out of 5.0
+Net Promoter Score: 67
+Detractors (0-6): 8%
+Passives (7-8): 17%
+Promoters (9-10): 75%
+
+TOP POSITIVE THEMES
+1. Onboarding Experience: 89% positive
+   - "Setup was completed in under 2 hours"
+   - "Support team was extremely helpful during migration"
+2. API Integration: 84% positive
+   - "Best documented API we have worked with"
+   - "Integration with our existing stack was seamless"
+3. Customer Support: 82% positive
+   - "Response time under 2 hours consistently"
+   - "Issues resolved on first contact most of the time"
+
+TOP COMPLAINTS AND ISSUES
+1. Mobile Application Performance: 34% of negative feedback
+   - App crashes on older Android devices
+   - Slow loading on 3G connections
+2. Pricing Structure Complexity: 28% of negative feedback
+   - Difficult to predict monthly bills
+   - Requests for simpler flat-rate pricing
+3. Reporting Features: 18% of negative feedback
+   - Limited export options (CSV only)
+   - No real-time dashboard for small plans
+
+SEGMENT ANALYSIS
+Enterprise Clients (500+ employees): NPS 74
+Mid-Market (50-500 employees): NPS 65
+Small Business (under 50): NPS 58
+
+FEATURE REQUESTS (Top 5)
+1. Real-time analytics dashboard
+2. Mobile app improvements
+3. Bulk export functionality
+4. Zapier/webhook integrations
+5. Multi-currency support

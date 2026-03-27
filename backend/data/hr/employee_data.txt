@@ -1,0 +1,38 @@
+FOODCHOW - HR EMPLOYEE REPORT Q3 2025
+
+WORKFORCE SUMMARY
+Total Employees: 248
+Full-Time: 220
+Part-Time: 18
+Contractors: 10
+New Hires Q3 2025: 22
+Attrition Q3 2025: 8
+Net Headcount Change: +14
+
+DEPARTMENT HEADCOUNT
+Engineering: 95 employees
+Marketing: 38 employees
+Finance: 24 employees
+HR and Operations: 22 employees
+Sales: 45 employees
+Executive: 12 employees
+Customer Support: 12 employees
+
+ATTENDANCE REPORT Q3 2025
+Average Attendance Rate: 94.2%
+Engineering Department Attendance: 95.1%
+Marketing Department Attendance: 93.8%
+Finance Department Attendance: 96.2%
+HR Department Attendance: 94.5%
+Sales Department Attendance: 92.1%
+
+Total Sick Days Taken Q3: 312
+Total Leave Days Taken Q3: 847
+Work From Home Days Q3: 4,820 (company-wide)
+
+PERFORMANCE REVIEWS
+Employees Due for Review Q4 2025: 64
+Completed Reviews Q3 2025: 71
+Average Performance Score: 3.8 out of 5.0
+Employees on Performance Improvement Plan: 4
+Top Performers Identified Q3: 18

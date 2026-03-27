@@ -1,0 +1,39 @@
+FOODCHOW - FINANCIAL REPORT Q3 2025
+
+REVENUE SUMMARY
+Total Revenue Q3 2025: $4,850,000
+Total Revenue Q2 2025: $4,200,000
+Quarter-over-Quarter Growth: 15.5%
+Year-to-Date Revenue: $13,100,000
+
+EXPENSE BREAKDOWN
+Total Operating Expenses Q3 2025: $3,100,000
+- Salaries and Benefits: $1,800,000
+- Marketing Expenses: $450,000
+- Equipment and Infrastructure: $320,000
+- Office and Administration: $180,000
+- Miscellaneous: $350,000
+
+NET PROFIT
+Q3 2025 Net Profit: $1,750,000
+Net Profit Margin: 36.1%
+Q2 2025 Net Profit: $1,400,000
+
+REIMBURSEMENTS
+September 2025 Total Reimbursements: $42,000
+August 2025 Total Reimbursements: $38,500
+July 2025 Total Reimbursements: $41,200
+Q3 Total Reimbursements: $121,700
+
+EQUIPMENT COSTS
+New Laptops (20 units): $40,000
+Server Infrastructure Upgrade: $180,000
+Office Furniture: $25,000
+Software Licenses: $75,000
+Total Equipment Costs Q3: $320,000
+
+OUTSTANDING INVOICES
+Client A - Invoice #1042: $85,000 (Due: Oct 15, 2025)
+Client B - Invoice #1043: $120,000 (Due: Oct 20, 2025)
+Client C - Invoice #1044: $65,000 (Due: Nov 1, 2025)
+Total Outstanding: $270,000

@@ -1,0 +1,39 @@
+FOODCHOW - DEVELOPMENT PROCESSES AND GUIDELINES
+
+SPRINT STRUCTURE
+Sprint Duration: 2 weeks
+Sprint Planning: Monday 10 AM (first day of sprint)
+Daily Standups: 9:30 AM every day (15 minutes max)
+Sprint Review: Friday 3 PM (last day of sprint)
+Sprint Retrospective: Friday 4 PM (last day of sprint)
+
+GIT WORKFLOW
+Main Branch: main (production-ready always)
+Development Branch: develop (integration branch)
+Feature Branches: feature/TICKET-ID-short-description
+Hotfix Branches: hotfix/issue-description
+Commit Convention: Conventional Commits (feat, fix, docs, chore)
+
+DEPLOYMENT PROCESS
+1. Developer creates feature branch from develop
+2. Opens Pull Request with description and test results
+3. Automated CI runs: linting, unit tests, integration tests
+4. Minimum 2 peer reviews required
+5. QA approval required for user-facing changes
+6. Merge to develop triggers staging deployment
+7. Staging QA sign-off required before production
+8. Production deployment via ArgoCD (GitOps)
+
+ON-CALL ROTATION
+On-call engineers rotate weekly
+Primary on-call: Immediate response within 15 minutes
+Secondary on-call: Backup, response within 30 minutes
+Incident severity levels: P0 (critical), P1 (high), P2 (medium), P3 (low)
+P0 incidents require war room within 30 minutes
+
+SECURITY GUIDELINES
+All secrets stored in AWS Secrets Manager
+No credentials in code or git history
+OWASP Top 10 checklist required for security-sensitive PRs
+Penetration testing conducted quarterly
+Dependency vulnerability scans run on every PR

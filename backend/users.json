@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "user_id": "u001",
+      "username": "tony_clevel",
+      "password": "tony123",
+      "role": "c_level",
+      "full_name": "Tony Sharma",
+      "email": "tony@foodchow.com"
+    },
+    {
+      "user_id": "u002",
+      "username": "alice_finance",
+      "password": "alice123",
+      "role": "finance",
+      "full_name": "Alice Mehta",
+      "email": "alice@foodchow.com"
+    },
+    {
+      "user_id": "u003",
+      "username": "bob_marketing",
+      "password": "bob123",
+      "role": "marketing",
+      "full_name": "Bob Singh",
+      "email": "bob@foodchow.com"
+    },
+    {
+      "user_id": "u004",
+      "username": "carol_hr",
+      "password": "carol123",
+      "role": "hr",
+      "full_name": "Carol Patel",
+      "email": "carol@foodchow.com"
+    },
+    {
+      "user_id": "u005",
+      "username": "dev_engg",
+      "password": "dev123",
+      "role": "engineering",
+      "full_name": "Dev Kumar",
+      "email": "dev@foodchow.com"
+    },
+    {
+      "user_id": "u006",
+      "username": "emp_general",
+      "password": "emp123",
+      "role": "employee",
+      "full_name": "Riya Sharma",
+      "email": "riya@foodchow.com"
+    }
+  ]
+}

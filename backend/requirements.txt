@@ -1,0 +1,31 @@
+# Web Framework
+fastapi
+uvicorn[standard]
+
+# Authentication
+python-jose[cryptography]
+passlib[bcrypt]
+
+# LLM & RAG
+langchain
+langchain-groq
+langchain-community
+langchain-text-splitters
+
+# Vector Database
+chromadb==0.4.24
+
+# Embeddings
+sentence-transformers
+
+# Document Loading
+pypdf
+python-docx
+
+# Utilities
+python-dotenv
+pydantic-settings
+
+# HTTP
+httpx
+numpy
