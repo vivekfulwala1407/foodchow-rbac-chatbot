@@ -6,16 +6,11 @@ from app.utils.logger import log_query
 def process_chat_query(
     query: str,
     current_user: CurrentUser,
+    chat_history: list[dict] | None = None,
 ) -> dict:
     """
-    Orchestrates a chat query end to end.
-
-    1. Runs the RAG pipeline
-    2. Logs the query to audit trail
-    3. Returns structured response
+    Orchestrates a chat query with memory support.
     """
-
-    # Validate query is not empty
     query = query.strip()
     if not query:
         return {
@@ -27,13 +22,12 @@ def process_chat_query(
             "query": query,
         }
 
-    # Run the full RAG pipeline
     result = run_rag_pipeline(
         query=query,
         current_user=current_user,
+        chat_history=chat_history,
     )
 
-    # Write to audit log
     log_query(
         username=current_user.username,
         role=current_user.role,

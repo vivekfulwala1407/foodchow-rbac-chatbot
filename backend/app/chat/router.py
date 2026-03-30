@@ -14,14 +14,20 @@ async def chat_query(
     current_user: CurrentUser = Depends(get_current_user),
 ):
     """
-    Main chat endpoint — the frontend calls this for every message.
-
-    Protected by JWT — user must be logged in.
-    Role is extracted from JWT — no way for user to fake their role.
-    RBAC filtering happens inside process_chat_query automatically.
+    Memory-aware chat endpoint.
+    Frontend sends full chat history with every request.
     """
+    # Convert Pydantic models to plain dicts for pipeline
+    history = None
+    if request.chat_history:
+        history = [
+            {"role": msg.role, "content": msg.content}
+            for msg in request.chat_history
+        ]
+
     result = process_chat_query(
         query=request.query,
         current_user=current_user,
+        chat_history=history,
     )
     return ChatResponse(**result)

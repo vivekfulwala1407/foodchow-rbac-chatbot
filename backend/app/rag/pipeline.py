@@ -12,15 +12,6 @@ settings = get_settings()
 
 
 def get_llm() -> ChatGroq:
-    """
-    Initialize Groq LLM client.
-
-    Why ChatGroq?
-    - Uses Groq's inference API — fastest LLM inference available
-    - llama-3.3-70b-versatile: best open-source model for Q&A tasks
-    - temperature=0.1: near-deterministic responses
-      (we want factual answers, not creative ones)
-    """
     return ChatGroq(
         api_key=SecretStr(settings.groq_api_key),
         model=settings.llm_model,
@@ -32,40 +23,47 @@ def get_llm() -> ChatGroq:
 def run_rag_pipeline(
     query: str,
     current_user: CurrentUser,
+    chat_history: list[dict] | None = None,
 ) -> dict:
     """
-    Main RAG pipeline — orchestrates the entire query flow.
+    Memory-aware RAG pipeline.
 
-    Flow:
-    1. Get allowed departments for this user's role (RBAC)
-    2. Search ChromaDB with role filter
-    3. If no results → return polite message
-    4. Build prompt with retrieved context
-    5. Send to Groq LLM
-    6. Return answer + sources
-
-    Returns dict with:
-    - answer: the LLM generated response
-    - sources: list of source document filenames
-    - departments_searched: which departments were searched
-    - chunks_found: how many relevant chunks were retrieved
+    chat_history format:
+    [
+        {"role": "user", "content": "What was Q3 revenue?"},
+        {"role": "assistant", "content": "$4.85M..."},
+        ...
+    ]
     """
 
-    # ── Step 1: RBAC — get allowed departments ──────────────────────
+    # ── Step 1: RBAC ────────────────────────────────────────────────
     allowed_departments = verify_access(current_user)
 
-    # ── Step 2: Vector search with role filter ──────────────────────
+    # ── Step 2: Enhanced query for memory ───────────────────────────
+    # If there's history, combine it with current query for better search
+    search_query = query
+    if chat_history and len(chat_history) >= 2:
+        # Take last user message + current query for richer vector search
+        last_user_msg = next(
+            (m["content"] for m in reversed(chat_history)
+             if m["role"] == "user"), ""
+        )
+        if last_user_msg and last_user_msg != query:
+            search_query = f"{last_user_msg} {query}"
+
+    # ── Step 3: Vector search ────────────────────────────────────────
     retrieved_chunks = search_documents(
-        query=query,
+        query=search_query,
         allowed_departments=allowed_departments,
         top_k=settings.top_k_results,
     )
 
-    # ── Step 3: Handle zero results ─────────────────────────────────
+    # ── Step 4: Handle zero results ──────────────────────────────────
     if not retrieved_chunks:
         no_results_prompt = build_no_results_prompt(
             query=query,
             role=current_user.role,
+            chat_history=chat_history,
         )
         llm = get_llm()
         response = llm.invoke([HumanMessage(content=no_results_prompt)])
@@ -76,18 +74,19 @@ def run_rag_pipeline(
             "chunks_found": 0,
         }
 
-    # ── Step 4: Build prompt with context ───────────────────────────
+    # ── Step 5: Build memory-aware prompt ────────────────────────────
     prompt = build_rag_prompt(
         query=query,
         context_chunks=retrieved_chunks,
         role=current_user.role,
+        chat_history=chat_history,
     )
 
-    # ── Step 5: Call Groq LLM ────────────────────────────────────────
+    # ── Step 6: Call Groq LLM ────────────────────────────────────────
     llm = get_llm()
     response = llm.invoke([HumanMessage(content=prompt)])
 
-    # ── Step 6: Extract unique source documents ──────────────────────
+    # ── Step 7: Extract sources ──────────────────────────────────────
     sources = list({chunk["source"] for chunk in retrieved_chunks})
 
     return {

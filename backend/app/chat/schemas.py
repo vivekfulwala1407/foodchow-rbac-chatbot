@@ -2,12 +2,16 @@ from pydantic import BaseModel
 from typing import Optional
 
 
-# What frontend sends to /chat/query
+class ChatMessage(BaseModel):
+    role: str        # "user" or "assistant"
+    content: str
+
+
 class ChatRequest(BaseModel):
     query: str
+    chat_history: Optional[list[ChatMessage]] = []
 
 
-# What we send back to frontend
 class ChatResponse(BaseModel):
     answer: str
     sources: list[str]
@@ -15,3 +19,4 @@ class ChatResponse(BaseModel):
     departments_searched: list[str]
     chunks_found: int
     query: str
+    confidence: Optional[str] = None
