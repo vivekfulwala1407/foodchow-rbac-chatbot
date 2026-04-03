@@ -4,13 +4,18 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import get_settings
 from app.auth.router import router as auth_router
 from app.chat.router import router as chat_router
+from app.analytics.router import router as analytics_router
+from app.admin.router import router as admin_router
+from app.database.init_db import init_database
 
 settings = get_settings()
+
+# Initialize PostgreSQL on startup
+init_database()
 
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
-    description="RAG-Based RBAC AI Chatbot for FoodChow",
     docs_url="/docs",
     redoc_url="/redoc",
 )
@@ -25,6 +30,8 @@ app.add_middleware(
 
 app.include_router(auth_router)
 app.include_router(chat_router)
+app.include_router(analytics_router)
+app.include_router(admin_router)
 
 
 @app.get("/", tags=["Root"])
@@ -33,7 +40,6 @@ async def root():
         "app": settings.app_name,
         "version": settings.app_version,
         "status": "running",
-        "docs": "/docs",
     }
 
 

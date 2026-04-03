@@ -37,7 +37,7 @@ Content: {chunk['content']}
             history_block += f"{role_label}: {msg['content']}\n"
         history_block += "\n"
 
-    prompt = f"""You are a secure internal AI assistant for FinSolve Technologies.
+    prompt = f"""You are a secure internal AI assistant for FoodChow.
 You are currently serving a user with the role: {role_display}
 
 STRICT RULES YOU MUST FOLLOW:
@@ -75,7 +75,7 @@ def build_no_results_prompt(
             history_block += f"{role_label}: {msg['content']}\n"
         history_block += "\n"
 
-    prompt = f"""You are a secure internal AI assistant for FinSolve Technologies.
+    prompt = f"""You are a secure internal AI assistant for FoodChow.
 A user with role '{role_display}' asked: "{query}"
 {history_block}
 No relevant documents were found in the database for this query within their access level.

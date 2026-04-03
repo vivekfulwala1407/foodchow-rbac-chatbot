@@ -4,7 +4,7 @@ from functools import lru_cache
 
 class Settings(BaseSettings):
     # App
-    app_name: str = "FoodChow RBAC Chatbot"
+    app_name: str = "FinSolve RBAC Chatbot"
     app_version: str = "1.0.0"
     debug: bool = True
 
@@ -16,9 +16,12 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     jwt_expire_hours: int = 8
 
+    # PostgreSQL
+    database_url: str = ""
+
     # ChromaDB
     chroma_db_path: str = "./chroma_db"
-    chroma_collection_name: str = "foodchow_docs"
+    chroma_collection_name: str = "finsolve_docs"
 
     # RAG
     embedding_model: str = "all-MiniLM-L6-v2"

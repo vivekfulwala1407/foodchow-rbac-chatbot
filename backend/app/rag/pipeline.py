@@ -5,6 +5,7 @@ from pydantic import SecretStr
 from app.config import get_settings
 from app.rag.vector_store import search_documents
 from app.rag.prompts import build_rag_prompt, build_no_results_prompt
+from app.rag.followup import generate_follow_up_questions
 from app.rbac.permissions import verify_access
 from app.auth.schemas import CurrentUser
 
@@ -26,24 +27,15 @@ def run_rag_pipeline(
     chat_history: list[dict] | None = None,
 ) -> dict:
     """
-    Memory-aware RAG pipeline.
-
-    chat_history format:
-    [
-        {"role": "user", "content": "What was Q3 revenue?"},
-        {"role": "assistant", "content": "$4.85M..."},
-        ...
-    ]
+    Full RAG pipeline with follow-up question generation.
     """
 
     # ── Step 1: RBAC ────────────────────────────────────────────────
     allowed_departments = verify_access(current_user)
 
-    # ── Step 2: Enhanced query for memory ───────────────────────────
-    # If there's history, combine it with current query for better search
+    # ── Step 2: Enhanced search query ───────────────────────────────
     search_query = query
     if chat_history and len(chat_history) >= 2:
-        # Take last user message + current query for richer vector search
         last_user_msg = next(
             (m["content"] for m in reversed(chat_history)
              if m["role"] == "user"), ""
@@ -72,9 +64,10 @@ def run_rag_pipeline(
             "sources": [],
             "departments_searched": allowed_departments,
             "chunks_found": 0,
+            "follow_up_questions": [],
         }
 
-    # ── Step 5: Build memory-aware prompt ────────────────────────────
+    # ── Step 5: Build prompt ─────────────────────────────────────────
     prompt = build_rag_prompt(
         query=query,
         context_chunks=retrieved_chunks,
@@ -85,13 +78,23 @@ def run_rag_pipeline(
     # ── Step 6: Call Groq LLM ────────────────────────────────────────
     llm = get_llm()
     response = llm.invoke([HumanMessage(content=prompt)])
+    answer: str = str(response.content)
 
     # ── Step 7: Extract sources ──────────────────────────────────────
     sources = list({chunk["source"] for chunk in retrieved_chunks})
 
+    # ── Step 8: Generate follow-up questions ─────────────────────────
+    follow_ups = generate_follow_up_questions(
+        query=query,
+        answer=answer,
+        role=current_user.role,
+        sources=sources,
+    )
+
     return {
-        "answer": response.content,
+        "answer": answer,
         "sources": sources,
         "departments_searched": allowed_departments,
         "chunks_found": len(retrieved_chunks),
+        "follow_up_questions": follow_ups,
     }

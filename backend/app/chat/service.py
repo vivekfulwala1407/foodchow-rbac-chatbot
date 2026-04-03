@@ -8,9 +8,6 @@ def process_chat_query(
     current_user: CurrentUser,
     chat_history: list[dict] | None = None,
 ) -> dict:
-    """
-    Orchestrates a chat query with memory support.
-    """
     query = query.strip()
     if not query:
         return {
@@ -20,6 +17,7 @@ def process_chat_query(
             "departments_searched": [],
             "chunks_found": 0,
             "query": query,
+            "follow_up_questions": [],
         }
 
     result = run_rag_pipeline(
@@ -44,4 +42,5 @@ def process_chat_query(
         "departments_searched": result["departments_searched"],
         "chunks_found": result["chunks_found"],
         "query": query,
+        "follow_up_questions": result.get("follow_up_questions", []),
     }

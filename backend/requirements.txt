@@ -29,3 +29,10 @@ pydantic-settings
 # HTTP
 httpx
 numpy
+
+sqlalchemy
+bcrypt
+
+psycopg2-binary
+sqlalchemy
+alembic

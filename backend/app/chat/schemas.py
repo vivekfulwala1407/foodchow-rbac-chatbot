@@ -3,7 +3,7 @@ from typing import Optional
 
 
 class ChatMessage(BaseModel):
-    role: str        # "user" or "assistant"
+    role: str
     content: str
 
 
@@ -19,4 +19,4 @@ class ChatResponse(BaseModel):
     departments_searched: list[str]
     chunks_found: int
     query: str
-    confidence: Optional[str] = None
+    follow_up_questions: list[str] = []
